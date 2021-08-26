@@ -1,0 +1,35 @@
+# How much will online players gain per second?
+money-gain: 0.01 # Default = (0.01) || $1 per 100 seconds
+
+# How much will players gain everytime a block is broken?
+break-block-money-gain: 0.5 # Default - (0.5) || $1 per 2 blocks mined
+# Tip Message When Players Gain Money
+break-block-tip: "$0.5 Gained from Mining"
+
+#
+:
+#
+:
+
+# Colours and Format Codes
+#  §4  ==  Dark Red
+#  §c  ==  Red
+#  §6  ==  Gold
+#  §e  ==  Yellow
+#  §2  ==  Dark Green
+#  §a  ==  Green
+#  §b  ==  Aqua
+#  §3  ==  Dark Aqua
+#  §6  ==  Dark Blue
+#  §9  ==  Blue
+#  §d  ==  Light Purple
+#  §5  ==  Dark Purple
+#  §f  ==  White
+#  §7  ==  Gray
+#  §8  ==  Dark Gray
+#  §0  ==  Black 
+
+#  §k  ==  Obfuscated
+#  §l  ==  Bold
+#  §i  ==  Italic
+#  §r  ==  Reset
