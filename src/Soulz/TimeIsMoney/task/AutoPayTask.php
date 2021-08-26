@@ -26,7 +26,7 @@ class AutoPayTask extends Task {
         foreach($this->loader->getServer()->getOnlinePlayers() as $player){
             if($this->loader->getPlayer($player) !== null){
                 # This is different from what I usually do, so hopefully it works
-                $this->loader->getPlayer($player) = EconomyAPI::getInstance()->addMoney($player, $this->loader->getConfig()->get("money-gain"));
+                $this->loader->getPlayer($player)->moneyIncrease(EconomyAPI::getInstance()->addMoney($player, $this->loader->getConfig()->get("money-gain"));
             }
         }
     }
