@@ -1,0 +1,6 @@
+name: TimeIsMoney
+main: Soulz\TimeIsMoney\Loader
+version: 1.0.0
+api: 3.0.0
+author: Soulz
+description: "Earn money from doing basic game activities!"
