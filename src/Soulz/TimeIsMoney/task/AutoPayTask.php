@@ -31,4 +31,3 @@ class AutoPayTask extends Task {
         }
     }
 }
-}
