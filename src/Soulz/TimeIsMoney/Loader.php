@@ -34,7 +34,7 @@ class TimeIsMoney extends PluginBase implements Listener {
 
         if($event->isCancelled() == false){ # Cancels any areas players can't mine (World Protection)
             $player->moneyIncrease($this->getConfig()->get("break-block-money-gain"));
-            $player->sendTip($this->getConfig()->get("break-block-tip"));
+            $player->sendTip(Utils::INCLINE . $this->getConfig()->get("break-block-tip"));
         }
     }
 
@@ -44,7 +44,7 @@ class TimeIsMoney extends PluginBase implements Listener {
 
         if($event->isCancelled == false){ # Cancels any areas players can't build (World Protection)
             $player->moneyIncrease($this->getConfig()->get("place-block-money-gain"));
-            $player->sendTip($this->getConfig()->get("place-block-tip"));
+            $player->sendTip(Utils::INCLINE . $this->getConfig()->get("place-block-tip"));
         }
     }
 
