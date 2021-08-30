@@ -2,6 +2,8 @@
 
 namespace Soulz\TimeIsMoney;
 
+use onebone\economyapi\EconomyAPI;
+
 use pocketmine\event\block\BlockBreakEvent;
 use pocketmine\event\block\BlockPlaceEvent;
 use pocketmine\event\player\PlayerDeathEvent;
@@ -13,49 +15,75 @@ use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
 use pocketmine\utils\TextFormat;
 
+use Soulz\TimeIsMoney\Command;
 use Soulz\TimeIsMoney\task\AutoPayTask;
-use onebone\economyapi\EconomyAPI;
 
 class TimeIsMoney extends PluginBase implements Listener {
 
      /** @var self */
     private static $instance;
 
-    public function onEnable(): void{
+    public function onEnable(): void {
         $this->saveDefaultConfig();
-        $this->getServer()->getPluginManager()->registerEvents($this,$this);
+        $this->getServer()->getPluginManager()->registerEvents($this, $this);
 
-        $this->getScheduler()->scheduleRepeatingTask(new AutoPayTask($this), 20 * $this->getConfig()->get("auto-pay-task"));
+        $this->getScheduler()->scheduleRepeatingTask(new AutoPayTask($this), 20);
+        $cmd = [
+            new Command()
+        ];
+        # TODO: Register Command
     }
 
-    public function onBreak(PlayerBreakEvent $event): void{
+     /**
+     * @param PlayerBreakEvent $event
+     * @ignoreCancelled true
+     */
+    public function onBreak(PlayerBreakEvent $event): void {
         $player = $event->getPlayer();
         $block = $event->getBlock();
 
-        if($event->isCancelled() == false){ # Cancels any areas players can't mine (World Protection)
-            $player->moneyIncrease($this->getConfig()->get("break-block-money-gain"));
+        if($event->isCancelled() == false){
+            $amount = $this->getConfig()->get("break-block-money-gain");
+            EconomyAPI::getInstance()->addMoney($player, $amount);
             $player->sendTip(Utils::INCLINE . $this->getConfig()->get("break-block-tip"));
         }
     }
 
-    public function onPlace(PlayerPlaceEvent $event): void{
+     /**
+     * @param PlayerPlaceEvent $event
+     * @ignoreCancelled true
+     */
+    public function onPlace(PlayerPlaceEvent $event): void {
         $player = $event->getPlayer();
         $block = $event->getBlock();
 
-        if($event->isCancelled == false){ # Cancels any areas players can't build (World Protection)
-            $player->moneyIncrease($this->getConfig()->get("place-block-money-gain"));
+        if($event->isCancelled == false){
+            $amount = $this->getConfig()->get("place-block-money-gain");
+            EconomyAPI::getInstance()->addMoney($player, $amount);
             $player->sendTip(Utils::INCLINE . $this->getConfig()->get("place-block-tip"));
         }
     }
 
-    public function onLoad(): void{
+    public function onDeath(PlayerDeathEvent $event): void {
+        $player = $event->getPlayer();
+        $cause = $player->getLastDamageCause();
+
+        if($cause instanceof EntityDamageByEntityEvent){
+            if(($damager = $cause->getDamager()) instanceof Player){
+                $amount = $this->getConfig()->get("kill-player-money-gain");
+                EconomyAPI::getInstance()->addMoney($damager, $amount);
+            }
+        }
+    }
+
+    public function onLoad(): void {
         self::$instance = $this;
     }
 
     /** 
     * @var Loader
     */
-    public static function getInstance(): self{
+    public static function getInstance(): self {
         return self::$instance;
     }
 
