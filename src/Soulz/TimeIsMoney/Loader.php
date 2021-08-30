@@ -18,7 +18,7 @@ use pocketmine\utils\TextFormat;
 use Soulz\TimeIsMoney\Command;
 use Soulz\TimeIsMoney\task\AutoPayTask;
 
-class TimeIsMoney extends PluginBase implements Listener {
+class Loader extends PluginBase implements Listener {
 
      /** @var self */
     private static $instance;
