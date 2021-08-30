@@ -2,10 +2,11 @@
 
 namespace Soulz\TimeIsMoney\task;
 
+use onebone\economyapi\EconomyAPI;
 use pocketmine\scheduler\Task;
+
 use pocketmine\utils\Config;
 use Soulz\TimeIsMoney\Loader;
-use onebone\economyapi\EconomyAPI;
 
 class AutoPayTask extends Task {
 
@@ -24,10 +25,10 @@ class AutoPayTask extends Task {
      */
     public function onRun(int $currentTick) {
         foreach($this->loader->getServer()->getOnlinePlayers() as $player){
-            if($this->loader->getPlayer($player) !== null){
-                # This is different from what I usually do, so hopefully it works
-                $this->loader->getPlayer($player)->moneyIncrease(EconomyAPI::getInstance()->addMoney($player, $this->loader->getConfig()->get("money-gain"));
-            }
+
+                $eco = EconomyAPI::getInstance();
+                $autoGain = $eco->addMoney($player);
+                $this->loader->getPlayer($player)->moneyIncrease($autoGain, $this->getConfig()->get("auto-gain"));
         }
     }
 }
