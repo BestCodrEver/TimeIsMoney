@@ -1,6 +1,14 @@
 name: TimeIsMoney
 main: Soulz\TimeIsMoney\Loader
 version: 1.0.0
-api: 3.0.0
 author: Soulz
+api: 3.0.0
 description: "Earn money from doing basic game activities!"
+commands:
+    timeismoney:
+        default: false
+        description: "View time is money info!"
+        permission: "time.is.money.command"
+permission:
+    time.is.money.command:
+        description: "Execute the time is money command!"
