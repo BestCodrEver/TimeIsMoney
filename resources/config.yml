@@ -1,15 +1,38 @@
-# How much will online players gain per second?
-money-gain: 0.01 # Default = (0.01) || $1 per 100 seconds
+###### INFORMATION ######
+# TimeIsMoney Plugin
+# Developed by: Soulz
+# Discord: Soul ✞#9999
 
-# How much will players gain everytime a block is broken?
-break-block-money-gain: 0.5 # Default - (0.5) || $1 per 2 blocks mined
+
+###### AUTO ######
+
+# How much will online players gain per tick?
+money-gain: 0.01 # Default = (0.01) || $1 per 100 ticks
+
+
+###### BREAK ######
+
+# How much will the player gain everytime a block is broken?
+break-block-money-gain: 1 # Default - (1) || $1 per block mined
 # Tip Message When Players Gain Money
-break-block-tip: "$0.5 Gained from Mining"
+break-block-tip: "§b$1 §7Gained from Mining"
 
-#
-:
-#
-:
+
+###### PLACE ######
+
+# How much will the player gain everytime a block is placed?
+place-block-money-gain: 0.2 # Default - (0.2) || $1 per 5 blocks mined
+# Tip Message When Players Gain Money
+place-block-tip: "§b$0.2 §7Gained from Mining"
+
+
+###### KILL ######
+
+# How much will the killer recieve per kill?
+kill-player-money-gain: 1000 # Default - (1000) || $1000 per player killed
+# Tip Message When Players Gain Money
+kill-player-message: "§b$1000 §7Recieved from §bKilling a Player!"
+
 
 # Colours and Format Codes
 #  §4  ==  Dark Red
