@@ -36,4 +36,6 @@ class Command extends Commmand implements PluginIdentifiableCommand {
 
     public function getPlugin(): Plugin {
 		return Loader::getInstance();
+      
+    }
 }
