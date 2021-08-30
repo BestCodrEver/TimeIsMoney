@@ -6,6 +6,7 @@ use onebone\economyapi\EconomyAPI;
 
 use pocketmine\event\block\BlockBreakEvent;
 use pocketmine\event\block\BlockPlaceEvent;
+use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\event\player\PlayerDeathEvent;
 use pocketmine\event\Litener;
 
@@ -20,21 +21,31 @@ use Soulz\TimeIsMoney\task\AutoPayTask;
 
 class Loader extends PluginBase implements Listener {
 
-     /** @var self */
+    /** @var self */
     private static $instance;
+
+    /**
+     * @return Loader
+     */
+    public static getInstance(): self {
+        return self::$instance;
+    }
+
+    public function onLoad(): void {
+        self::$instance = $this;
+    }
 
     public function onEnable(): void {
         $this->saveDefaultConfig();
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
 
         $this->getScheduler()->scheduleRepeatingTask(new AutoPayTask($this), 20);
-        $cmd = [
+        $this->getServer()->getCommandMap()->registerAll("TimeIsMoney", [
             new Command()
-        ];
-        # TODO: Register Command
+        ]);
     }
 
-     /**
+    /**
      * @param PlayerBreakEvent $event
      * @ignoreCancelled true
      */
@@ -49,7 +60,7 @@ class Loader extends PluginBase implements Listener {
         }
     }
 
-     /**
+    /**
      * @param PlayerPlaceEvent $event
      * @ignoreCancelled true
      */
@@ -64,6 +75,9 @@ class Loader extends PluginBase implements Listener {
         }
     }
 
+    /**
+     * @param PlayerDeathEvent $event
+     */
     public function onDeath(PlayerDeathEvent $event): void {
         $player = $event->getPlayer();
         $cause = $player->getLastDamageCause();
@@ -72,17 +86,14 @@ class Loader extends PluginBase implements Listener {
             if(($damager = $cause->getDamager()) instanceof Player){
                 $amount = $this->getConfig()->get("kill-player-money-gain");
                 EconomyAPI::getInstance()->addMoney($damager, $amount);
+                $damager->sendMessage(Utils::INCLINE . $this->getConfig->get("kill-player-message"));
             }
         }
     }
 
-    public function onLoad(): void {
-        self::$instance = $this;
-    }
-
     /** 
-    * @var Loader
-    */
+     * @var Loader
+     */
     public static function getInstance(): self {
         return self::$instance;
     }
