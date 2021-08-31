@@ -5,6 +5,7 @@ namespace Soulz\TimeIsMoney;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\command\PluginIdentifiableCommand;
+use pocketmine\plugin\Plugin;
 use pocketmine\utils\TextFormat;
 use Soulz\TimeIsMoney\Loader;
 
