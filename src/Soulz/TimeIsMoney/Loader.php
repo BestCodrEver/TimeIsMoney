@@ -24,13 +24,6 @@ class Loader extends PluginBase implements Listener {
     /** @var self */
     private static $instance;
 
-    /**
-     * @return Loader
-     */
-    public static getInstance(): self {
-        return self::$instance;
-    }
-
     public function onLoad(): void {
         self::$instance = $this;
     }
