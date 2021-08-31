@@ -8,7 +8,7 @@ use pocketmine\event\block\BlockBreakEvent;
 use pocketmine\event\block\BlockPlaceEvent;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\event\player\PlayerDeathEvent;
-use pocketmine\event\Litener;
+use pocketmine\event\Listener;
 
 use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
