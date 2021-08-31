@@ -3,6 +3,7 @@ main: Soulz\TimeIsMoney\Loader
 version: 1.0.0
 author: Soulz
 api: 3.0.0
+depend: EconomyAPI
 description: "Earn money from doing basic game activities!"
 commands:
     timeismoney:
