@@ -58,7 +58,7 @@ class Loader extends PluginBase implements Listener {
      * @param PlayerPlaceEvent $event
      * @ignoreCancelled true
      */
-    public function onPlace(PlayerPlaceEvent $event): void {
+    public function onPlace(BlockPlaceEvent $event): void {
         $player = $event->getPlayer();
         $block = $event->getBlock();
 
