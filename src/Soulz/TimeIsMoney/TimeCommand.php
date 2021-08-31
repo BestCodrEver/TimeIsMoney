@@ -16,7 +16,7 @@ class TimeCommand extends Command implements PluginIdentifiableCommand {
         $this->setPermission("time.is.money.command");
     }
 
-    public function execute(CommandSender $sender, string $commandLabel, array $args): void {
+    public function execute(CommandSender $sender, string $commandLabel, array $args){
         if(!isset(args[0])) return $sender->sendMessage(TextFormat::RED . "Insufficient Args! " . TextFormat::GRAY . "/timeismoney [info, auto]");
         if(!$sender->hasPermission("time.is.money.command")){
             $sender->sendMessage(TextFormat::GRAY . "You do not have permission to execute this command!");
