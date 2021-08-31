@@ -43,7 +43,7 @@ class Loader extends PluginBase implements Listener {
      * @param PlayerBreakEvent $event
      * @ignoreCancelled true
      */
-    public function onBreak(PlayerBreakEvent $event): void {
+    public function onBreak(BlockBreakEvent $event): void {
         $player = $event->getPlayer();
         $block = $event->getBlock();
 
