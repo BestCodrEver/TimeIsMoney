@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Soulz\TimeIsMoney;
 
 use pocketmine\command\Command;
@@ -9,7 +11,7 @@ use pocketmine\plugin\Plugin;
 use pocketmine\utils\TextFormat;
 use Soulz\TimeIsMoney\Loader;
 
-class Command extends Commmand implements PluginIdentifiableCommand {
+class TimeCommand extends Command implements PluginIdentifiableCommand {
 
     public function __construct(){
         parent::__construct("timeismoney", "View Time Is Money", "/timeismoney [info, auto]", ['timemoney']);
