@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace Soulz\TimeIsMoney;
 
 use pocketmine\command\Command;
