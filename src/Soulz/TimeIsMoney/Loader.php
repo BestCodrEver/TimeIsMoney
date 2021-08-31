@@ -16,7 +16,7 @@ use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
 use pocketmine\utils\TextFormat;
 
-use Soulz\TimeIsMoney\Command;
+use Soulz\TimeIsMoney\TimeCommand;
 use Soulz\TimeIsMoney\task\AutoPayTask;
 
 class Loader extends PluginBase implements Listener {
@@ -30,12 +30,13 @@ class Loader extends PluginBase implements Listener {
 
     public function onEnable(): void {
         $this->saveDefaultConfig();
-        $this->getServer()->getPluginManager()->registerEvents($this, $this);
 
         $this->getScheduler()->scheduleRepeatingTask(new AutoPayTask($this), 20);
         $this->getServer()->getCommandMap()->registerAll("TimeIsMoney", [
-            new Command()
+            new TimeCommand()
         ]);
+
+        $this->getServer()->getPluginManager()->registerEvents($this, $this);
     }
 
     /**
